@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
         spriter = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
 
-        speed = 3.0f;
+        speed = 4.0f;
     }
 
     void Update()
