@@ -6,10 +6,8 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField]
-    private Vector2 inputVec;
-    [SerializeField]
-    private float speed;
+    public Vector2 inputVec;
+    public float speed;
 
     Rigidbody2D rigid;
     SpriteRenderer spriter;
@@ -53,13 +51,10 @@ public class Player : MonoBehaviour
         // magnitude : 벡터의 크기 값 가져옴
         animator.SetFloat("Speed", inputVec.magnitude);
 
-
         if (inputVec.x != 0)
         {
             spriter.flipX = inputVec.x < 0; // 값이 true false 로 나오니까
         }
-
-
     }
 
     //void OnMove(InputValue value)
