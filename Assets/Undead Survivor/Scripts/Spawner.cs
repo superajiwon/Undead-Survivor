@@ -22,8 +22,8 @@ public class Spawner : MonoBehaviour
 
         if (timer > spawnData[level].spawnTime)
         {
-            Spawn();
             timer = 0f;
+            Spawn();
         }
     }
 
