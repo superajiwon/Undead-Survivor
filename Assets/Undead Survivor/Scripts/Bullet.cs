@@ -7,6 +7,9 @@ public class Bullet : MonoBehaviour
     public float damage;
     public int per;
 
+    float tempDamage;
+    float lowerDamage;
+
     Rigidbody2D rigid;
 
     void Awake()
@@ -31,6 +34,9 @@ public class Bullet : MonoBehaviour
         this.damage = damage;
         this.per = per;
 
+        tempDamage = this.damage;
+        lowerDamage = damage / 3;
+
         if (per > -1)
         {
             rigid.velocity = dir * 15f;
@@ -43,9 +49,11 @@ public class Bullet : MonoBehaviour
             return;
 
         per--;
+        damage -= lowerDamage;
 
-        if (per == -1)
+        if (per == -1 || damage <= 0)
         {
+            damage = tempDamage;
             rigid.velocity = Vector2.zero;
             gameObject.SetActive(false);
         }
