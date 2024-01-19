@@ -49,7 +49,8 @@ public class Bullet : MonoBehaviour
             return;
 
         per--;
-        damage -= lowerDamage;
+        //관통 시 데미지 줄도록
+        //damage -= lowerDamage; 
 
         if (per == -1 || damage <= 0)
         {

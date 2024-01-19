@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public Vector2 inputVec;
     public float speed;
     public Scanner scanner;
+    public Hand[] hands;
 
     Rigidbody2D rigid;
     SpriteRenderer spriter;
@@ -20,8 +21,7 @@ public class Player : MonoBehaviour
         spriter = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         scanner = GetComponent<Scanner>();
-
-        speed = 4.0f;
+        hands = GetComponentsInChildren<Hand>(true); // 비활성화 되어있어도 읽어라
     }
 
     void Update()
