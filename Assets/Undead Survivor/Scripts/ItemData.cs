@@ -11,6 +11,7 @@ public class ItemData : ScriptableObject //생성스크립트
     public ItemType itemType;
     public int itemId;
     public string itemName;
+    [TextArea]
     public string itemDesc;
     public Sprite itemIcon;
 

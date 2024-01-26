@@ -26,6 +26,9 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (!GameManager.instance.isLive)
+            return;
+
         // 기본 움직임
         // 그냥 GetAxis는 자연스럽게 값을 변경
         // 정확한 타이밍에 움직여야한다면 GetAxisRaw
@@ -35,12 +38,15 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!GameManager.instance.isLive)
+            return;
+
         // 1. 힘을 준다 
         //rigid.AddForce(inputVec);
 
         // 2. 속도 제어
         //rigid.velocity = inputVec;
-        
+
         // 3. 위치 이동 : 월드 좌표에서 이동해야 하니까
         //    리지드에 normalized * speed * 고정된 프레임 한 방향을 더해서 위치 이동
         Vector2 nextVec = inputVec.normalized * speed * Time.fixedDeltaTime;
@@ -58,6 +64,26 @@ public class Player : MonoBehaviour
         {
             spriter.flipX = inputVec.x < 0; // 값이 true false 로 나오니까
         }
+    }
+
+    void OnCollisionStay2D(Collision2D collision)
+    {
+        if (!GameManager.instance.isLive)
+            return;
+
+        GameManager.instance.health -= Time.deltaTime * 10;
+
+        if (GameManager.instance.health <= 0)
+        {
+            for (int i = 2; i < transform.childCount; i++)
+            {
+                transform.GetChild(i).gameObject.SetActive(false);
+            }
+
+            animator.SetTrigger("Dead");
+            GameManager.instance.GameOver();
+        }
+
     }
 
     //void OnMove(InputValue value)

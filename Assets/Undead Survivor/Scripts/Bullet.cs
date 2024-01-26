@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
 {
     public float damage;
     public int per;
+    //public bool isAlways;
 
     float tempDamage;
     float lowerDamage;
@@ -19,20 +20,24 @@ public class Bullet : MonoBehaviour
 
     void Update()
     {
+        if (!GameManager.instance.isLive)
+            return;
+
         if (!gameObject.activeSelf)
             return;
 
-        if (Vector2.Distance(transform.parent.position, transform.position) > 100f)
-        {
-            rigid.velocity = Vector2.zero;
-            gameObject.SetActive(false);
-        }
+        //if (!isAlways && Vector2.Distance(transform.parent.position, transform.position) > 100f)
+        //{
+        //    rigid.velocity = Vector2.zero;
+        //    gameObject.SetActive(false);
+        //}
     }
 
     public void Init(float damage, int per, Vector3 dir)
     {
         this.damage = damage;
         this.per = per;
+        //this.isAlways = isAlways;
 
         tempDamage = this.damage;
         lowerDamage = damage / 3;
