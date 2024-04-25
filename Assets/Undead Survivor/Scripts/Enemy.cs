@@ -87,6 +87,7 @@ public class Enemy : MonoBehaviour
         {
             // Live -> hit action
             anim.SetTrigger("Hit");
+            AudioManager.instance.PlaySFX(AudioManager.Sfx.Hit);
         }
         else
         {
@@ -99,6 +100,9 @@ public class Enemy : MonoBehaviour
 
             GameManager.instance.kill++;
             GameManager.instance.GetExp();
+
+            if (GameManager.instance.isLive) 
+                AudioManager.instance.PlaySFX(AudioManager.Sfx.Dead);
         }
     }
 

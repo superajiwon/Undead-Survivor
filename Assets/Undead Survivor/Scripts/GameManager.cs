@@ -48,6 +48,9 @@ public class GameManager : MonoBehaviour
         uiLevelUp.Select(playerID % 2); // 기본 무기 지급을 위한 함수 호출에서 인자값을 캐릭터 ID로 변경
 
         Resume();
+
+        AudioManager.instance.PlayBGM(true);
+        AudioManager.instance.PlaySFX(AudioManager.Sfx.Select);
     }
 
     public void GameOver()
@@ -65,6 +68,9 @@ public class GameManager : MonoBehaviour
         uiResult.Lose();
 
         Stop();
+
+        AudioManager.instance.PlayBGM(false);
+        AudioManager.instance.PlaySFX(AudioManager.Sfx.Lose);
     }
 
     public void GameVictory()
@@ -84,6 +90,9 @@ public class GameManager : MonoBehaviour
         uiResult.Win();
 
         Stop();
+
+        AudioManager.instance.PlayBGM(false);
+        AudioManager.instance.PlaySFX(AudioManager.Sfx.Win);
     }
 
     public void GameRetry()
